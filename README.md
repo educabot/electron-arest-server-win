@@ -39,7 +39,7 @@ code repository.
 4. Run `npm install`. (See Dependencies above)
 5. Change directories to the express-app folder and run `npm install`.
 6. Change directories back to the root of the code repository.
-7. Run `npm start` to start the application.
+7. Run `npm start --scripts-prepend-node-path` to start the application.
 
 ## Package with Electron-Packager
 
