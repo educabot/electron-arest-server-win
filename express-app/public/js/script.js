@@ -1,10 +1,11 @@
+console.log("hola");
 $( document ).ready(function() {
 
   // Create new aREST device when button is clicked
   $('#validate').click(function() {
     var address = $('#device_address').val();
     var device = new Device(address);
-    console.log("hola");
+    
 
     // Set device pins
     device.pinMode(13, "OUTPUT");

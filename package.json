@@ -1,5 +1,5 @@
 {
-  "name": "electron-with-express",
+  "productName": "electron-edubot",
   "description": "Demonstrates spawning Express from Electron and using it to serve content",
   "version": "0.7.0",
   "main": "main.js",

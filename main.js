@@ -7,11 +7,11 @@ let mainWindow;
 function createWindow () {
   mainWindow = new BrowserWindow({
     autoHideMenuBar: true,
-    width: 1640,
-    height: 1480
+    width: 1040,
+    height: 800
   });
   mainWindow.loadURL(`file://${__dirname}/index.html`)
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
   mainWindow.on("closed", function () {
     mainWindow = null;
   })
