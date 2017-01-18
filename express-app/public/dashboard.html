@@ -1,81 +1,148 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-	<meta charset=utf-8 />
-	<title>aREST.js Demo</title>
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="https://cdn.rawgit.com/Foliotek/AjaxQ/master/ajaxq.js"></script>
-	<script type="text/javascript" src="./js/arest.js"></script>
-	<script type="text/javascript" src="./js/script.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="img/favicon.png">
+  <title>Educablocks</title>
+
+	<link rel="stylesheet" type="text/css" href="src/bloques/css/visualino.css">
+	<link rel="stylesheet" type="text/css" href="src/highlight/styles/default.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
 </head>
+
 <body>
+  <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header ">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Educablocks</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse ">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Bloques</a></li>
+            <li><a href="robots.html">Robots</a></li>
+            <li class="active"><a href="#">Dashboard</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">sensores <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#temperatura">Temperatura</a></li>
+                <li><a href="#humedad">Humedad</a></li>
+                <li><a href="#control">Control</a></li>
+                <!-- <li role="separator" class="divider"></li>
+                <li class="dropdown-header">descargas</li>
+                <li><a href="#">datos</a></li>
+                <li><a href="#">datos2</a></li> -->
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-<div class='container'>
+    <!-- Main component for a primary marketing message or call to action -->
+    <section id="temperatura">
+      <div class="jumbotron">
+        <div class='row'>
+          <div class="col-md-3">
+            Dirección IP del dispositivo:
+          </div>
+          <div class="col-md-3">
+            <input id='device_address' type="text" name="fname">
+          </div>
+          <div class="col-md-2">
+            <button id='validate' class='btn btn-primary btn-block' type="button">Conectar</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<h1>Educa Panel de Control Maestro W.A.C.H.I.U.A.U</h1>
-<h2>(Wow, Alto Control Hicieron Inteligentemente Unos Altos Umanos)</h2>
+    <section id="temperatura">
+      <div class="jumbotron">
+        <h1>Temperatura</h1>
+        <p>Podemos ver aquí como el sensor de temperatura del Arduino nos va informando segundo a segundo lo que está sensando.</p>
+        <p>
+          <div id="container">
+          </div>
+        </p>
 
-<div class='row'>
-  <div class="col-md-3">
-    Diresionnnn IP:
+        <p>
+          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">veamos el código &raquo;</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="humedad">
+      <div class="jumbotron">
+        <h1>Humedad</h1>
+        <div class='row'>
+          <div class="col-md-3">Analog pin A0:
+            <span id='A0'></span>
+          </div>
+        </div>
+        <div class='row'>
+          <div class="col-md-3">Analog pin A1:
+            <span id='A1'></span>
+          </div>
+        </div>
+        <p>Podemos ver aquí como el sensor de humedad del Arduino nos va informando segundo a segundo lo que está sensando.</p>
+        <p>
+          <div id="container2">
+          </div>
+        </p>
+
+        <p>
+          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">veamos el código &raquo;</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="control">
+      <div class="jumbotron">
+
+        <div class='row'>
+          <div class="col-md-2">Digital pin 13: </div>
+
+          <div class="col-md-2">
+            <button id='on' class='btn btn-primary btn-block' type="button">On</button>
+          </div>
+
+          <div class="col-md-2">
+            <button id='off' class='btn btn-danger btn-block' type="button">Off</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
   </div>
-  <div class="col-md-3">
-    <input id='device_address' type="text" name="fname">
-  </div>
-  <div class="col-md-2">
-    <button id='validate' class='btn btn-primary btn-block' type="button">Validate Ameo</button>
-  </div>
-</div>
 
-<div class='row'>
+  <!-- js -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src='https://code.highcharts.com/highcharts.js'></script>
+  <script src='https://code.highcharts.com/modules/exporting.js'></script>
 
-  <div class="col-md-2">Digital pin 13: </div>
+  <script type="text/javascript" src="https://cdn.rawgit.com/Foliotek/AjaxQ/master/ajaxq.js"></script>
+  <script type="text/javascript" src="src/dashboard/js/arest.js"></script>
+  <script type="text/javascript" src="src/dashboard/js/script.js"></script>
+  <script type="text/javascript" src="src/dashboard/js/index.js"></script>
 
-  <div class="col-md-2">
-    <button id='on' class='btn btn-primary btn-block' type="button">On</button>
-  </div>
-  
-  <div class="col-md-2">
-  	<button id='off' class='btn btn-danger btn-block' type="button">Off</button>
-  </div>
-  
-</div>
-
-<!--<div class='row'>
-  
-  <div id='label' class="col-md-2">PWM pin 6: </div>
-  <div class="col-md-4">
-    <input id='slider' type="range" value="0" max="255" min="0" step="5">
-  </div>
-</div>-->
-
-<div class='row'>
-
-  <div class="col-md-3">Analog pin A0: 
-    <span id='A0'></span>
-  </div>
-
-
-  <!--<div class="col-md-3">Digital pin 2: 
-    <span id='2'></span>
-  </div>
-
-</div>
-
-<div class='row'>
-
-  <div class="col-md-2">Temperature: 
-    <span id='temperature'></span>
-  </div>
-
-  <div class="col-md-2">Humidity: 
-    <span id='humidity'></span>
-  </div>
-</div>-->
-
-</div>
- 
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
+
 </html>

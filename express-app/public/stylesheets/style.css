@@ -1,6 +1,8 @@
 body {
   padding: 50px;
   font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-top: 80px;
+  padding-bottom: 20px;
 }
 
 a {
@@ -15,4 +17,7 @@ a {
 #slider {
 	margin-top: 7px;
     vertical-align:middle;
+}
+.navbar {
+  margin-bottom: 20px;
 }
