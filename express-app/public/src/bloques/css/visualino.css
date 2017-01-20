@@ -1,6 +1,6 @@
 html, body {
-    height: 94%;
-    margin: 30px;
+  height: 99%;
+  margin: 2px;
 }
 
 .blocklyTreeLabel,           /* Toolbox        */
@@ -75,15 +75,15 @@ html, body {
 }
 
 #code {
-    margin: 0;
-    float: right;
-    width: 33%;
-    height: 100%;
-    background-color: #FAFAFA;
-    color: #5F5F5F;
-    overflow: auto;
-    font-family: "Droid Sans Mono", monospace;
-    border-color: #e0e0e0 !important;
+  margin: 0;
+  float: right;
+  width: 33%;
+  height: 100%;
+  background-color: #FAFAFA;
+  color: #5F5F5F;
+  overflow: auto;
+  font-family: "Droid Sans Mono", monospace;
+  border-color: #e0e0e0 !important;
   border-width: 0px 1px 0px 0px !important;
   -webkit-border-radius: 0px 4px 4px 0px !important;
   -moz-border-radius: 4px 4px 0px 0px !important;
@@ -99,7 +99,7 @@ html, body {
 }
 
 #wrap {
-    height: 100%;
-    width: 100%;
-    margin: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
 }

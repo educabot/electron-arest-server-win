@@ -2,8 +2,8 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--  <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="img/favicon.png">
   <title>Educablocks</title>
@@ -12,12 +12,13 @@
   <link rel="stylesheet" type="text/css" href="src/highlight/styles/default.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 
 <body>
-    <div class="container">
-        <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -26,7 +27,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Educablocks</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -38,99 +38,110 @@
       </div>
     </nav>
 
-
+  </div>
+  
     <xml id="startBlocks" style="display: none">
         <block type="controls_setupLoop" deletable="false"></block>
     </xml>
     <div id="wrap">
-        <div id="blockly" style="float: left; height: 500px; width: 66%;"></div>
-        <div id="code" style="float: right; width: 32%;"></div>
+        <div id="blockly" style="float: left; width: 66%; height: 90%;"></div>
+        <div id="code"></div>
     </div>
-</div>
 
-    <!-- js -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-
-    <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-  <!-- Latest compiled and minified JavaScript -->
+  <!-- js -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="src/bloques/js/underscore/underscore.js"></script>
+  <script src="src/highlight/highlight.pack.js"></script>
+  <script src="src/bloques/js/blockly-bq/blockly_compressed.js"></script>
+  <script src="src/bloques/js/blockly-bq/blocks_compressed.js"></script>
+  <script src="src/bloques/js/blockly-bq/arduino_compressed.js"></script>
+  <script src="src/bloques/js/roboblocks.js"></script>
+  <script>
+  if (window.roboblocksLanguage === undefined
+    || window.roboblocksLanguage == null) {
+      var roboblocksLanguage = 'es-ES';
+    }
 
-    <script src="src/bloques/js/underscore/underscore.js"></script>
-    <script src="src/bloques/js/blockly-bq/blockly_compressed.js"></script>
-    <script src="src/bloques/js/blockly-bq/blocks_compressed.js"></script>
-    <script src="src/bloques/js/blockly-bq/arduino_compressed.js"></script>
-    <script src="src/bloques/js/roboblocks.js"></script>
-    <script src="src/highlight/highlight.pack.js"></script>
-    <script>
-        if (window.roboblocksLanguage === undefined ||
-            window.roboblocksLanguage == null) {
-            var roboblocksLanguage = 'es-ES';
-        }
+    RoboBlocks.load({
+      zoom: 0.5
+    });
 
-        RoboBlocks.load({
-            zoom: 0.5
-        });
+    // New workspace for each test case
+    var el = document.getElementById('blockly');
+    Blockly.inject(el, {
+      toolbox: Blockly.createToolbox()
+    });
+    // Create a default setup/loop block
+    Blockly.Xml.domToWorkspace(Blockly.getMainWorkspace(),
+    document.getElementById('startBlocks'));
 
-        // New workspace for each test case
-        var el = document.getElementById('blockly');
-        Blockly.inject(el, {
-            toolbox: Blockly.createToolbox()
-        });
-        // Create a default setup/loop block
-        Blockly.Xml.domToWorkspace(Blockly.getMainWorkspace(),
-            document.getElementById('startBlocks'));
+    $('.blocklySvg, #blockly').height('100%');
+    $('.blocklySvg').width('100%');
 
-        $('.blocklySvg, #blockly').height('100%');
-        $('.blocklySvg').width('100%');
 
-        var colors = [
-            "",
-            RoboBlocks.LANG_COLOUR_PROCEDURES,
-            RoboBlocks.LANG_COLOUR_CONTROL,
-            RoboBlocks.LANG_COLOUR_LOGIC,
-            RoboBlocks.LANG_COLOUR_MATH,
-            RoboBlocks.LANG_COLOUR_VARIABLES,
-            RoboBlocks.LANG_COLOUR_TEXT,
-            RoboBlocks.LANG_COLOUR_COMMUNICATION,
-            RoboBlocks.LANG_COLOUR_ZUM,
-            RoboBlocks.LANG_COLOUR_BQ,
-            RoboBlocks.LANG_COLOUR_ADVANCED,
-            RoboBlocks.LANG_COLOUR_LCD,
-            RoboBlocks.LANG_COLOUR_SERVO,
-        ];
+    var colors = [
+      "",
+      RoboBlocks.LANG_COLOUR_PROCEDURES,
+      RoboBlocks.LANG_COLOUR_CONTROL,
+      RoboBlocks.LANG_COLOUR_LOGIC,
+      RoboBlocks.LANG_COLOUR_MATH,
+      RoboBlocks.LANG_COLOUR_VARIABLES,
+      RoboBlocks.LANG_COLOUR_TEXT,
+      RoboBlocks.LANG_COLOUR_COMMUNICATION,
+      RoboBlocks.LANG_COLOUR_ZUM,
+      RoboBlocks.LANG_COLOUR_BQ,
+      RoboBlocks.LANG_COLOUR_ADVANCED,
+      RoboBlocks.LANG_COLOUR_LCD,
+      RoboBlocks.LANG_COLOUR_SERVO,
 
-        $('.blocklyTreeRow').each(function(i, e) {
-            $(e).prepend('<span class="treeLabelBlock" style="background-color:' + colors[i] + '"></span>');
-        });
 
-        // Update code
-        Blockly.addChangeListener(function() {
-            $('#code').html('<code class="c++"><pre>' +
-                escapeCode(Blockly.Arduino.workspaceToCode()) +
-                '</pre></code>');
-            // Highlight
-            $("pre").each(function(i, e) {
-                hljs.highlightBlock(e);
-            });
-            // webHelper is injected in Visualino
-            //webHelper.sourceChanged();
-        });
+    ];
 
-        function escapeCode(code) {
-            var str = code;
-            str = str.replace(/</g, "&lt;");
-            str = str.replace(/>/g, "&gt;");
-            return str;
-        }
+    $('.blocklyTreeRow').each( function (i,e) {
+      $(e).prepend('<span class="treeLabelBlock" style="background-color:' + colors[i] + '"></span>');
+    });
 
-        function resetWorkspace() {
-            Blockly.mainWorkspace.clear();
-            Blockly.Xml.domToWorkspace(Blockly.getMainWorkspace(),
-                document.getElementById('startBlocks'));
-        }
+    // Update code
+    Blockly.addChangeListener(function () {
+      $('#code').html('<code class="c++"><pre>'
+      + escapeCode(Blockly.Arduino.workspaceToCode())
+      + '</pre></code>');
+      // Highlight
+      $("pre").each(function (i, e) {
+        hljs.highlightBlock(e);
+      });
+      // webHelper is injected in Visualino
+      webHelper.sourceChanged();
+    });
+
+    // Show/hide code
+    function toogleCode() {
+      if ($('#code').css('display') == 'none') {
+        // Show
+        $('#code').show();
+        $('#blockly').width('66%');
+      } else {
+        // Hide
+        $('#code').hide();
+        $('#blockly').width('100%');
+      }
+      // Resize workspace
+      Blockly.fireUiEvent(window, "resize");
+    }
+
+    function escapeCode(code) {
+      var str = code;
+      str = str.replace(/</g, "&lt;");
+      str = str.replace(/>/g, "&gt;");
+      return str;
+    }
+
+    function resetWorkspace() {
+      Blockly.mainWorkspace.clear();
+      Blockly.Xml.domToWorkspace(Blockly.getMainWorkspace(),
+      document.getElementById('startBlocks'));
+    }
     </script>
 </body>
 

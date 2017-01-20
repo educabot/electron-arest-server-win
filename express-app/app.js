@@ -8,26 +8,6 @@ const express = require('express'),
       users = require('./routes/users'),
       app = express();
 
-
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
-
-// // Define port
-// var port = 4000;
-
-// // Rest
-// var rest = require("arest")(app);
-
-// //rest.addDevice('http','192.168.1.103');
-// rest.addDevice('serial','COM3', 115200);
-
-// // Start server
-// app.listen(port);
-// console.log("Listening on port " + port);
-
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
