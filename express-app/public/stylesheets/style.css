@@ -1,7 +1,9 @@
 body {
-  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Raleway', sans-serif;
+  color: whitesmoke;
   /*padding: 50px;
-  /*background: url("http://educabot.org/wp-content/uploads/2015/04/logo3.png");*/
+  /*background: url("http://educabot.org/wp-content/uploads/2015/04/logo3.png");
+  background: url("/assets/server.gif");*/
   background: url("/assets/iot.png");
   background-repeat: no-repeat;
   background-color: #0070c5;

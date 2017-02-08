@@ -5,29 +5,14 @@ const express = require('express'),
       cookieParser = require('cookie-parser'),
       bodyParser = require('body-parser'),
       routes = require('./routes/index'),
-      users = require('./routes/users'),
+      serialport = require('serialport');
       app = express();
-
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-
-  // Define port
-  var port = 4000;
-
-  // Rest
-  var rest = require("arest")(app);
-
-  //rest.addDevice('http','192.168.1.103');
-  rest.addDevice('serial','COM5', 115200);
-
-  // Start server
-  app.listen(port);
-  console.log("Listening on port " + port);
-
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,7 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //
 app.use('/', routes);
-app.use('/users', users);
+
+
 
 //catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -76,5 +62,33 @@ app.use(function(err, req, res) {
     error: {}
   });
 });
+
+// Define port
+var port = 4000;
+
+// Rest
+var rest = require("arest")(app);
+ 
+// list serial ports:
+serialport.list(function (err, ports) {
+  ports.forEach(function(port) {
+    console.log(port.comName);
+    console.log(port.manufacturer);
+    console.log(port.vendorId);
+    if (port.vendorId === '8087' || port.vendorId === '2341' ){
+      rest.addDevice('serial',port.comName, 115200);
+    } else {
+      console.log("Soportamos sólo placas Arduino UNO o Microsoft Genuino 101")
+      //window.close();
+    }
+    
+  });
+});
+
+// Start server
+app.listen(port);
+console.log("Escuchando el puerto " + port);
+
+
 
 module.exports = app;

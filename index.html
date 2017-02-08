@@ -62,9 +62,9 @@
             spawn = require("child_process").spawn,
             // For electron-packager change cwd in spawn to app.getAppPath() and
             // uncomment the app require below
-            //app = require('electron').remote.app,
-            //node = spawn(".\\node.exe", ["./express-app/bin/www"], { cwd: app.getAppPath() })
-            node = spawn(".\\node.exe", ["./express-app/bin/www"], { cwd: process.cwd() }),
+            app = require('electron').remote.app,
+            node = spawn(".\\node.exe", ["./express-app/bin/www"], { cwd: app.getAppPath() })
+            //node = spawn(".\\node.exe", ["./express-app/bin/www"], { cwd: process.cwd() }),
             request = require("request"),
             _ = require("lodash"),
             key = require("keymaster"),
