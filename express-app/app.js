@@ -26,6 +26,32 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Define port
+var port = 4000;
+
+// Rest
+var rest = require("arest")(app);
+ 
+// list serial ports:
+serialport.list(function (err, ports) {
+  ports.forEach(function(port) {
+    console.log(port.comName);
+    console.log(port.manufacturer);
+    console.log(port.vendorId);
+    if (port.vendorId === '8087' || port.vendorId === '2341' ){
+      rest.addDevice('serial',port.comName, 115200);
+    } else {
+      console.log("Soportamos sólo placas Arduino UNO o Microsoft Genuino 101")
+      //window.close();
+    }
+    
+  });
+});
+
+// Start server
+app.listen(port);
+console.log("Escuchando el puerto " + port);
+
 //
 app.use('/', routes);
 
@@ -62,32 +88,6 @@ app.use(function(err, req, res) {
     error: {}
   });
 });
-
-// Define port
-var port = 4000;
-
-// Rest
-var rest = require("arest")(app);
- 
-// list serial ports:
-serialport.list(function (err, ports) {
-  ports.forEach(function(port) {
-    console.log(port.comName);
-    console.log(port.manufacturer);
-    console.log(port.vendorId);
-    if (port.vendorId === '8087' || port.vendorId === '2341' ){
-      rest.addDevice('serial',port.comName, 115200);
-    } else {
-      console.log("Soportamos sólo placas Arduino UNO o Microsoft Genuino 101")
-      //window.close();
-    }
-    
-  });
-});
-
-// Start server
-app.listen(port);
-console.log("Escuchando el puerto " + port);
 
 
 
