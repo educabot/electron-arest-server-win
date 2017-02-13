@@ -41,7 +41,7 @@ serialport.list(function (err, ports) {
     if (port.vendorId === '8087' || port.vendorId === '2341' ){
       rest.addDevice('serial',port.comName, 115200);
     } else {
-      console.log("Soportamos sólo placas Arduino UNO o Microsoft Genuino 101")
+      console.log("Soportamos sólo placas Arduino UNO o Genuino 101")
       //window.close();
     }
     
